@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participant Registration</title>
+</head>
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+    <h2 style="margin: 50px; padding: 0 100px">Registrations are open for the following events:</h2>
+    <div style="margin: 20px 50px 50px 50px; padding: 20px 100px; font-size: small;"><hr>
+    {% for event in events %}
+        {% if event.status == 1 %}
+            <b>{{ event.eventName }}</b><br>
+            <p align="jusify">
+                <strong>Description: </strong>{{ event.desc }}<br><br>
+                <strong>Date(s): </strong>{{ event.fromDate }}  -  {{ event.toDate }}<br>
+                <strong>Time: </strong>{{ event.fromTime }}  -  {{ event.toTime }}<br>
+                <strong>Registration ends at: </strong>{{ event.regEndDate }}  {{ event.regEndTime }}<br>
+                <strong>Venue: </strong>{{ event.loc }}<br>
+            </p>
+            <hr>
+        {% endif %}
+    {% endfor %}
+</div>
+
+<div style="background-color: coral; margin: 50px 100px; padding: 50px 100px">
+    <center>
+        <h1>Participant Registration</h1><br>
+    <form method="POST" action="participantReg" name="participantReg">
+        {% csrf_token %}
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label class="text" for="username">Name:</label>
+            <input type="text" class="" name='p_name' placeholder="Name" id="username" rows="9">
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label class="number" for="mobile">Contact No.:</label>
+            <input type="number" class="" name='p_contact' placeholder="Contact No." id="mobile">
+        </div>
+
+        <div class="form-group" style="margin-top: 20px;">
+            <label class="email" for="E-mail">Email ID:</label>
+            <input type="email" class="" name='p_email' placeholder="Email ID" id="E-mail" rows="9">
+        </div>
+
+        <div style="margin-top: 20px;">
+            <label>Event: </label>
+            {% for event in events %}
+            {% if event.status == 1 %}
+            <input type="radio" id="eventSelect" name="p_event" value={{event.id}}>
+            <label>{{ event.eventName }}</label>
+            {% endif %}
+            {% endfor %}
+    
+        <div class="form-check form-check-inline" style="margin-top: 20px;">Registration-Type:
+            <input class="form-check-input"type="radio" name="p_type" id="inlineRadio1" value="Individual">
+            <label class="form-check-label" for="inlineRadio1">Individual</label>
+            <input class="form-check-input" type="radio" name="p_type" id="inlineRadio2" value="Group">
+            <label class="form-check-label" for="inlineRadio2">Group</label>
+        </div>
+
+        <div class="incre" style="margin-top: 20px;">No. of People:
+            <input type="number" name="p_tickets" id="numb" value="0" />
+        </div>
+        </br>
+
+        <input type="submit" class="btn btn-dark mt-2" style="margin-top: 30px;">
+    </form>
+</div>
+
+        
+            {% for message in messages %}
+                <div style="background-color:white; margin:10px; border-radius:1px; color: navy; font-weight: bold; text-align: center; font-size: 25px; width: 50%; border-style: solid; border-width: 2px;"></div>    
+                    {{ message }}
+                </div>
+            {% endfor %}<br>
+            <h4><a href="index">Back to HomePage</a></h4>
+    </center>
+
+</body>
+</html>

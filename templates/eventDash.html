@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Dashboard</title>
+</head>
+
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+    <center>
+    <div  style="background-color: palegoldenrod; margin: 50px; padding: 50px 100px">
+        <h1>Event Dashboard</h1>
+        <br><br>
+
+        <div class="d-flex justify-content-center">
+            <div id="login_form" class="card">
+                <center>
+                    <form method="post" action="eventDash" name="eventDash">
+                        {% csrf_token %}
+                        <label>Event-ID: </label>
+                        <input type="number" name="event_id"><br><br>
+                        <label>Host-Password: </label>
+                        <input type="password" name="event_pw"><br><br>
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </form>
+                </center>
+            </div><br><br>
+            <div style="background-color: red; color: white;">
+            {% for message in messages %}
+                {{ message }}<br>
+            {% endfor %}
+        </div>
+        </div><br><br>
+
+
+        <div class="d-flex justify-content-center">
+            <table border=3px>
+                {% if flag == 1 %}
+                <tr>
+                    <th>Participant-ID</th>
+                    <th>Name</th>
+                    <th>Contact No.</th>
+                    <th>E-mail ID</th>
+                    <th>Participation Type</th>
+                    <th>No. of people</th>
+                </tr>
+                {% endif %}
+                {% for participant in participants %}
+                <tr>
+                    <td>{{ participant.id }}</td>
+                    <td>{{ participant.participantName }}</td>
+                    <td>{{ participant.contact }}</td>
+                    <td>{{ participant.email }}</td>
+                    <td>{{ participant.regType }}</td>
+                    <td>{{ participant.noOfTickets }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    <br><h4><a href="index">Back to HomePage</a></h4>
+    </div>
+</center>
+</body>
+
+</html>

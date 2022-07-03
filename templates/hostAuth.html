@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Authentication</title>
+</head>
+<body>
+    <center>
+        <h2>Event Authentication</h2>
+        <form method="post" action="eventAuth" name="eventAuth">
+            {% csrf_token %}
+            <label>Event-ID: </label>
+            <input type="number" name="event_id"><br>
+            <label>Host-Password: </label>
+            <input type="password" name="event_pw">
+            <input type="submit" value="Submit">
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+</head>
+
+<body>
+    <div style="background-color: bisque; padding: 50px 100px; margin:50px; font-family: verdana;">
+        <center>
+            <h1>Event Registration</h1><br><br>
+            <form action="eventReg" method="post" name="eventReg" style="font-size:medium;">
+                {% csrf_token %}
+                <div class="form-group" style="margin-top: 10px;">
+                    <label class="text" for="eventname">Event Name</label>
+                    <input type="text" class="" name='e_name' placeholder="Event Name" id="eventname" rows="9">
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="desc">Description</label>
+                    <textarea class="form-control" name='e_desc' id="desc" rows="3" columns="10"
+                        placeholder="Description Here"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label class="number" for="location">Location</label>
+                    <input type="text" class="" name='e_location' placeholder="Location" id="location">
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label class="date" style="margin-right:2rem;" for="e_fdate">From</label>
+                    <input type="date" class="date" name='e_fdate' id="e_fdate">
+                    <input type="time" class="time" name="e_ftime">
+
+                    <label class="date" for="e_tdate" style="margin:0 2rem;">To</label>
+                    <input type="date" class="date" name='e_tdate' id="e_tdate">
+                    <input type="time" class="time" name="e_ttime">
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label class="date" for="e_rdate">Registration Deadline</label>
+                    <input type="date" class="date" name='e_rdate' id="e_fdate">
+                    <input type="time" class="time" name="e_rtime">
+                </div>
+
+                <!-- <div class="form-group" style="margin-top: 10px;">
+                    <label>Link for Event Poster</label>
+                    <input type="text" class="text" name="e_poster">
+                </div> -->
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label for="email" style="margin-right:2rem;">Host E-mail</label>
+                    <input type="email" name='e_email' id="email" placeholder="E-mail">
+                </div>
+
+                <div class="form-group" style="margin-top: 10px;">
+                    <label class="password" for="e_pw" style="margin-right:0.5rem;">Host-Password</label>
+                    <input type="password" name='e_pw' id="e_pw" placeholder="Password">
+                </div>
+
+                <input type="submit" class="btn btn-dark mt-2" style="margin-top: 30px;">
+            </form><br>
+            <h4><a href="index">Back to HomePage</a></h4>
+        </center>
+    </div>
+</body>
+
+</html>
