@@ -1,1 +1,1 @@
-# WoC-4.0-Django-EventManager
+# EventManager Web App
