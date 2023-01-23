@@ -12,10 +12,6 @@ def root(request):
     return redirect('index')
 
 
-def index(request, something):
-    return render(request, 'index.html', something)
-
-
 def index(request):
     return render(request, 'index.html')
 
@@ -43,11 +39,15 @@ def eventReg(request):
             + '\n\nYou can now review the participation in your event through our portal.'\
             + '\n\nEventManager Web App'
         to = request.POST["e_email"]
-        send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+        print('--------------------------------------------------------------')
+        print('Event ID: '+str(event.objects.get(eventName=request.POST["e_name"]).id))
+        print('--------------------------------------------------------------')
+
+        # send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
         contents = {
             'qwerty' : 'abc'
         }
-        index(request, contents)
+        # index(request, contents)
         # return
         return redirect('index')
     else:
@@ -88,7 +88,10 @@ def participantReg(request):
                 + '\nNo. of people: ' + participantInstance.noOfTickets\
                 + '\n\n\nTeam EventoZone'
             to = participantInstance.email
-            send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
+            print('--------------------------------------------------------------')
+            print('Event ID: '+str(participantInstance.id))
+            print('--------------------------------------------------------------')
+            # send_mail(subject, msg, settings.EMAIL_HOST_USER, [to])
 
 
 
